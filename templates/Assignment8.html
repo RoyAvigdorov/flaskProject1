@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> My Hobbies </title>
+</head>
+<body>
+    {% set page_name= ' my hobbies page' %}
+    {% include('add.html') %}
+    {% include ('menu.html') %}
+    {% block body %}
+         {% set user= {'firstname': "Roy" ,'lastname':"Avigdorov"}%}
+         <h1> {{ user.firstname }} {{ user.lastname }} hobbies</h1>
+
+    <ul>
+        {% for hobby in hobbies %}
+        <h3>{{ hobby|upper }}</h3>
+      ` {% endfor %}
+    </ul>:
+   {% if hobbies|length > 2 %}
+<h4> you have to much hobbies</h4>
+    {% else %}
+<h4> Please pick more hobbies </h4>
+{% endif %}
+
+
+
+</body>
+{% endblock %}
+</html>
