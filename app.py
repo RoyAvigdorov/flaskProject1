@@ -1,4 +1,6 @@
 from flask import Flask, redirect, render_template,session,request,url_for
+from interact_with_DB import *
+
 
 app = Flask(__name__)
 
@@ -54,6 +56,13 @@ def log_out():
     session['username'] = ''
     return redirect('/assignment9')
 
+## assignment10
+from assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
