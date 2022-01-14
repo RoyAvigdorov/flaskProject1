@@ -62,7 +62,28 @@ app.register_blueprint(assignment10)
 
 
 
+
+
+@app.route('/assignment11/users')
+def assignment11_get_users():
+    query = 'select * from users;'
+    users = interact_db(query=query, query_type='fetch')
+    return jsonify(users)
+
+
+@app.route('/assignment11/outer_source')
+def assignment11_outer_source_fun():
+    return render_template('request_outer_source.html')
+
+
+def get_user_byid(id):
+    res = requests.get(f'https://reqres.in/api/users/{id}')
+    res1 = res.json()
+    return res1
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
 
