@@ -81,6 +81,25 @@ def get_user_byid(id):
     res1 = res.json()
     return res1
 
+@app.route('/assignment12/restapi_users', defaults={'user_id': 1})
+@app.route('/assignment12/restapi_users/<int:user_id>')
+def get_user(user_id):
+    query = 'select * from users where id=%s;' % user_id
+    users = interact_db(query=query, query_type='fetch')
+    if len(users) == 0:
+        return_dict = {
+            'status': 'failed',
+            'message': 'user was not found'
+        }
+    else:
+        return_dict = {
+            'status': 'success',
+            'id': users[0].id,
+            'first name': users[0].firstname,
+            'last name': users[0].lastname,
+            'email': users[0].email,
+        }
+    return jsonify(return_dict)
 
 
 
